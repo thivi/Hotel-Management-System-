@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HotelManagement" Class="HotelManDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=THIVI-PC;Initial Catalog=HotelManagement;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="HotelManagementConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AdvanceBill" Member="AdvanceBills">
+    <Type Name="AdvanceBill">
+      <Column Name="BillID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CustID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AdvanceAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="AdvanceBill_AdvanceBillHall" Member="AdvanceBillHalls" ThisKey="BillID" OtherKey="BillID" Type="AdvanceBillHall" />
+      <Association Name="AdvanceBill_AdvanceBillRoom" Member="AdvanceBillRooms" ThisKey="BillID" OtherKey="BillID" Type="AdvanceBillRoom" />
+      <Association Name="AdvanceBill_FinalBill" Member="FinalBills" ThisKey="BillID" OtherKey="AdvanceBillID" Type="FinalBill" />
+      <Association Name="Customer_AdvanceBill" Member="Customer" ThisKey="CustID" OtherKey="CustomerID" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rooms" Member="Rooms">
+    <Type Name="Room">
+      <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoomType" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="RoomNo" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="Room_RoomBooking" Member="RoomBookings" ThisKey="RoomID" OtherKey="RoomID" Type="RoomBooking" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AdvanceBillHalls" Member="AdvanceBillHalls">
+    <Type Name="AdvanceBillHall">
+      <Column Name="ABillHallID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BillID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HallBookingID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AdvanceBill_AdvanceBillHall" Member="AdvanceBill" ThisKey="BillID" OtherKey="BillID" Type="AdvanceBill" IsForeignKey="true" />
+      <Association Name="HallBooking_AdvanceBillHall" Member="HallBooking" ThisKey="HallBookingID" OtherKey="HallBookingID" Type="HallBooking" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AdvanceBillRooms" Member="AdvanceBillRooms">
+    <Type Name="AdvanceBillRoom">
+      <Column Name="ABillRoomID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BillID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RoomBookingID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AdvanceBill_AdvanceBillRoom" Member="AdvanceBill" ThisKey="BillID" OtherKey="BillID" Type="AdvanceBill" IsForeignKey="true" />
+      <Association Name="RoomBooking_AdvanceBillRoom" Member="RoomBooking" ThisKey="RoomBookingID" OtherKey="BookingID" Type="RoomBooking" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ContactNo" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="NICno" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="DOB" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="RegDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="uname" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="pwd" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="Customer_AdvanceBill" Member="AdvanceBills" ThisKey="CustomerID" OtherKey="CustID" Type="AdvanceBill" />
+      <Association Name="Customer_HallBooking" Member="HallBookings" ThisKey="CustomerID" OtherKey="CustID" Type="HallBooking" />
+      <Association Name="Customer_RoomBooking" Member="RoomBookings" ThisKey="CustomerID" OtherKey="CustID" Type="RoomBooking" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FinalBill" Member="FinalBills">
+    <Type Name="FinalBill">
+      <Column Name="FinalBillID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="AdvanceBillID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FinalAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="AdvanceBill_FinalBill" Member="AdvanceBill" ThisKey="AdvanceBillID" OtherKey="BillID" Type="AdvanceBill" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FunctionPack" Member="FunctionPacks">
+    <Type Name="FunctionPack">
+      <Column Name="FuncID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FuncType" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="FunctionName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="FunctionPack_HallBooking" Member="HallBookings" ThisKey="FuncID" OtherKey="FunctionPack" Type="HallBooking" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HallBooking" Member="HallBookings">
+    <Type Name="HallBooking">
+      <Column Name="HallBookingID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HallID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BookTime" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="BookDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FunctionPack" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoOfAtendees" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MealPackID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HallBooking_AdvanceBillHall" Member="AdvanceBillHalls" ThisKey="HallBookingID" OtherKey="HallBookingID" Type="AdvanceBillHall" />
+      <Association Name="Customer_HallBooking" Member="Customer" ThisKey="CustID" OtherKey="CustomerID" Type="Customer" IsForeignKey="true" />
+      <Association Name="FunctionPack_HallBooking" Member="FunctionPack1" ThisKey="FunctionPack" OtherKey="FuncID" Type="FunctionPack" IsForeignKey="true" />
+      <Association Name="Hall_HallBooking" Member="Hall" ThisKey="HallID" OtherKey="HallID" Type="Hall" IsForeignKey="true" />
+      <Association Name="MealPackage_HallBooking" Member="MealPackage" ThisKey="MealPackID" OtherKey="MealID" Type="MealPackage" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Halls" Member="Halls">
+    <Type Name="Hall">
+      <Column Name="HallID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Capacity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HallNo" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PriceMorn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PriceEven" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PriceNight" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PricePerPerson" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Hall_HallBooking" Member="HallBookings" ThisKey="HallID" OtherKey="HallID" Type="HallBooking" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MealPackage" Member="MealPackages">
+    <Type Name="MealPackage">
+      <Column Name="MealID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MealName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="MealDescription" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="MealPackage_HallBooking" Member="HallBookings" ThisKey="MealID" OtherKey="MealPackID" Type="HallBooking" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RoomBooking" Member="RoomBookings">
+    <Type Name="RoomBooking">
+      <Column Name="BookingID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BookFrom" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BookTo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CustID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoPersons" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BookDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="RoomID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="RoomBooking_AdvanceBillRoom" Member="AdvanceBillRooms" ThisKey="BookingID" OtherKey="RoomBookingID" Type="AdvanceBillRoom" />
+      <Association Name="Customer_RoomBooking" Member="Customer" ThisKey="CustID" OtherKey="CustomerID" Type="Customer" IsForeignKey="true" />
+      <Association Name="Room_RoomBooking" Member="Room" ThisKey="RoomID" OtherKey="RoomID" Type="Room" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

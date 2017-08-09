@@ -1,0 +1,69 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="/css/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <link href="/Fonts/Roboto-Bold.ttf" rel="sylesheet" type="text/css" />
+    <link href="/Fonts/Roboto-Medium.ttf" rel="sylesheet" type="text/css" />
+
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div class="header">
+            <div class="logo">
+                <img src="img/monsoon-logo.png" style="height: 53px; width: 246px" /></div>
+            <div class="user-info">
+                <div class="username" >
+                    <asp:LinkButton ID="LinkButton7" runat="server" OnClick="LinkButton7_Click">LOGIN</asp:LinkButton>
+                    <span id="login" runat="server">|</span>
+                    <asp:LinkButton ID="LinkButton8" runat="server" OnClick="LinkButton8_Click">REGISTER</asp:LinkButton>
+                    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                </div>
+                <div class="user-avatar">
+                    <asp:LinkButton ID="LinkButton4" runat="server" OnClick="LinkButton4_Click"><i class="fa fa-shopping-cart" aria-hidden="true" draggable="false"></i></asp:LinkButton>
+                    <div id="notify" runat="server" class="notify">
+                        <asp:Label ID="Label2" runat="server" Text=""></asp:Label></div>
+                </div>
+            </div>
+        </div>    
+        <div class="main-body">
+            <div class="sidebar">
+                <ul class="menu">
+                    <li>
+                        <i class="icon fa fa-home" aria-hidden="true"></i>
+                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Home</asp:LinkButton>
+                    </li>
+                    <li>
+                        <i class="icon fa fa-bed" aria-hidden="true"></i><asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Book a Room</asp:LinkButton></li>
+                    <li>
+                        <i class="icon fa fa-birthday-cake" aria-hidden="true"></i>
+                        <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click">Book a Hall</asp:LinkButton></li>
+                    <li id="logout" runat="server">
+                        <i class="icon fa fa-sign-out" aria-hidden="true"></i>
+                        <asp:LinkButton ID="LinkButton6" runat="server" OnClick="LinkButton6_Click">Logout</asp:LinkButton></li>
+                    <li id="useredit" runat="server">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <asp:LinkButton ID="LinkButton5" runat="server" OnClick="LinkButton5_Click">Edit User</asp:LinkButton>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-area">
+                <div class="content">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

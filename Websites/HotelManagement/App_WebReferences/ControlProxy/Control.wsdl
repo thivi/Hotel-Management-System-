@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="bookroomavail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="roomtype" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="checkin" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="checkout" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="bookroomavailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bookroomavailResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="auth">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="authResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="authResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="hallavail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="day" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="time" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="hallavailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hallavailResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="username">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="unames" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="usernameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="usernameResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="eusername">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="unames" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="uid" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="eusernameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eusernameResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="saveReg">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contact" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nic" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dob" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="uname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="saveRegResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="editReg">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="uid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contact" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nic" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dob" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="uname" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="editRegResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="editRegp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="uid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contact" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nic" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dob" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="uname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="editRegpResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="hallb">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="time" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="day" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="fid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="no" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="uid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="mealid" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="hallbResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hallbResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="roomb">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkin" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="checkout" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="uid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="noguests" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="roomid" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="roombResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roombResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="advb">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="uid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tot" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="adv" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="advbResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="advbResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="bookroomavailSoapIn">
+    <wsdl:part name="parameters" element="tns:bookroomavail" />
+  </wsdl:message>
+  <wsdl:message name="bookroomavailSoapOut">
+    <wsdl:part name="parameters" element="tns:bookroomavailResponse" />
+  </wsdl:message>
+  <wsdl:message name="authSoapIn">
+    <wsdl:part name="parameters" element="tns:auth" />
+  </wsdl:message>
+  <wsdl:message name="authSoapOut">
+    <wsdl:part name="parameters" element="tns:authResponse" />
+  </wsdl:message>
+  <wsdl:message name="hallavailSoapIn">
+    <wsdl:part name="parameters" element="tns:hallavail" />
+  </wsdl:message>
+  <wsdl:message name="hallavailSoapOut">
+    <wsdl:part name="parameters" element="tns:hallavailResponse" />
+  </wsdl:message>
+  <wsdl:message name="usernameSoapIn">
+    <wsdl:part name="parameters" element="tns:username" />
+  </wsdl:message>
+  <wsdl:message name="usernameSoapOut">
+    <wsdl:part name="parameters" element="tns:usernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="eusernameSoapIn">
+    <wsdl:part name="parameters" element="tns:eusername" />
+  </wsdl:message>
+  <wsdl:message name="eusernameSoapOut">
+    <wsdl:part name="parameters" element="tns:eusernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="saveRegSoapIn">
+    <wsdl:part name="parameters" element="tns:saveReg" />
+  </wsdl:message>
+  <wsdl:message name="saveRegSoapOut">
+    <wsdl:part name="parameters" element="tns:saveRegResponse" />
+  </wsdl:message>
+  <wsdl:message name="editRegSoapIn">
+    <wsdl:part name="parameters" element="tns:editReg" />
+  </wsdl:message>
+  <wsdl:message name="editRegSoapOut">
+    <wsdl:part name="parameters" element="tns:editRegResponse" />
+  </wsdl:message>
+  <wsdl:message name="editRegpSoapIn">
+    <wsdl:part name="parameters" element="tns:editRegp" />
+  </wsdl:message>
+  <wsdl:message name="editRegpSoapOut">
+    <wsdl:part name="parameters" element="tns:editRegpResponse" />
+  </wsdl:message>
+  <wsdl:message name="hallbSoapIn">
+    <wsdl:part name="parameters" element="tns:hallb" />
+  </wsdl:message>
+  <wsdl:message name="hallbSoapOut">
+    <wsdl:part name="parameters" element="tns:hallbResponse" />
+  </wsdl:message>
+  <wsdl:message name="roombSoapIn">
+    <wsdl:part name="parameters" element="tns:roomb" />
+  </wsdl:message>
+  <wsdl:message name="roombSoapOut">
+    <wsdl:part name="parameters" element="tns:roombResponse" />
+  </wsdl:message>
+  <wsdl:message name="advbSoapIn">
+    <wsdl:part name="parameters" element="tns:advb" />
+  </wsdl:message>
+  <wsdl:message name="advbSoapOut">
+    <wsdl:part name="parameters" element="tns:advbResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ControlSoap">
+    <wsdl:operation name="bookroomavail">
+      <wsdl:input message="tns:bookroomavailSoapIn" />
+      <wsdl:output message="tns:bookroomavailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="auth">
+      <wsdl:input message="tns:authSoapIn" />
+      <wsdl:output message="tns:authSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="hallavail">
+      <wsdl:input message="tns:hallavailSoapIn" />
+      <wsdl:output message="tns:hallavailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="username">
+      <wsdl:input message="tns:usernameSoapIn" />
+      <wsdl:output message="tns:usernameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="eusername">
+      <wsdl:input message="tns:eusernameSoapIn" />
+      <wsdl:output message="tns:eusernameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="saveReg">
+      <wsdl:input message="tns:saveRegSoapIn" />
+      <wsdl:output message="tns:saveRegSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="editReg">
+      <wsdl:input message="tns:editRegSoapIn" />
+      <wsdl:output message="tns:editRegSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="editRegp">
+      <wsdl:input message="tns:editRegpSoapIn" />
+      <wsdl:output message="tns:editRegpSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="hallb">
+      <wsdl:input message="tns:hallbSoapIn" />
+      <wsdl:output message="tns:hallbSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="roomb">
+      <wsdl:input message="tns:roombSoapIn" />
+      <wsdl:output message="tns:roombSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="advb">
+      <wsdl:input message="tns:advbSoapIn" />
+      <wsdl:output message="tns:advbSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ControlSoap" type="tns:ControlSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="bookroomavail">
+      <soap:operation soapAction="http://tempuri.org/bookroomavail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="auth">
+      <soap:operation soapAction="http://tempuri.org/auth" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hallavail">
+      <soap:operation soapAction="http://tempuri.org/hallavail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="username">
+      <soap:operation soapAction="http://tempuri.org/username" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eusername">
+      <soap:operation soapAction="http://tempuri.org/eusername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveReg">
+      <soap:operation soapAction="http://tempuri.org/saveReg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="editReg">
+      <soap:operation soapAction="http://tempuri.org/editReg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="editRegp">
+      <soap:operation soapAction="http://tempuri.org/editRegp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hallb">
+      <soap:operation soapAction="http://tempuri.org/hallb" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="roomb">
+      <soap:operation soapAction="http://tempuri.org/roomb" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="advb">
+      <soap:operation soapAction="http://tempuri.org/advb" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlSoap12" type="tns:ControlSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="bookroomavail">
+      <soap12:operation soapAction="http://tempuri.org/bookroomavail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="auth">
+      <soap12:operation soapAction="http://tempuri.org/auth" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hallavail">
+      <soap12:operation soapAction="http://tempuri.org/hallavail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="username">
+      <soap12:operation soapAction="http://tempuri.org/username" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eusername">
+      <soap12:operation soapAction="http://tempuri.org/eusername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveReg">
+      <soap12:operation soapAction="http://tempuri.org/saveReg" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="editReg">
+      <soap12:operation soapAction="http://tempuri.org/editReg" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="editRegp">
+      <soap12:operation soapAction="http://tempuri.org/editRegp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hallb">
+      <soap12:operation soapAction="http://tempuri.org/hallb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="roomb">
+      <soap12:operation soapAction="http://tempuri.org/roomb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="advb">
+      <soap12:operation soapAction="http://tempuri.org/advb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Control">
+    <wsdl:port name="ControlSoap" binding="tns:ControlSoap">
+      <soap:address location="http://localhost:65285/Control.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlSoap12" binding="tns:ControlSoap12">
+      <soap12:address location="http://localhost:65285/Control.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
